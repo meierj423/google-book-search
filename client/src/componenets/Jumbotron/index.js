@@ -1,17 +1,16 @@
 import React from "react";
 import Jumbotron from "react-bootstrap/Jumbotron";
-import Container from 'react-bootstrap/Container'
+import Container from "react-bootstrap/Container";
 import "./style.css";
 
 function JumbotronComp() {
   return (
     <Jumbotron fluid>
       <Container>
-        <h1>Fluid jumbotron</h1>
-        <p>
-          This is a modified jumbotron that occupies the entire horizontal space
-          of its parent.
-        </p>
+        <div className="jumbotron-text">
+          <h1>Google Books Search</h1>
+          <p>Search for and save books of interest</p>
+        </div>
       </Container>
     </Jumbotron>
   );
