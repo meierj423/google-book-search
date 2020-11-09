@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import { Navbar, Nav } from "react-bootstrap";
 import "./style.css";
 
@@ -9,8 +10,12 @@ function NavBar() {
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link href="/">Search</Nav.Link>
-          <Nav.Link href="/saved">Saved</Nav.Link>
+          <Nav.Link as={NavLink} exact to="/">
+            Search
+          </Nav.Link>
+          <Nav.Link as={NavLink} exact to="/saved">
+            Saved
+          </Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
