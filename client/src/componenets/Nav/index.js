@@ -4,15 +4,15 @@ import "./style.css";
 
 function NavBar() {
   return (
-    <Navbar className="Navbar" expand="lg">
-      <Navbar.Brand href="/search">
-        <div className="brand">Search</div>
-      </Navbar.Brand>
-      <Nav className="mr-auto">
-        <Nav.Link className="link" href="/saved">
-          <div className="link">Saved</div>
-        </Nav.Link>
-      </Nav>
+    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Navbar.Brand href="/">Google Books Search</Navbar.Brand>
+      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+      <Navbar.Collapse id="responsive-navbar-nav">
+        <Nav className="mr-auto">
+          <Nav.Link href="/">Search</Nav.Link>
+          <Nav.Link href="/saved">Saved</Nav.Link>
+        </Nav>
+      </Navbar.Collapse>
     </Navbar>
   );
 }
