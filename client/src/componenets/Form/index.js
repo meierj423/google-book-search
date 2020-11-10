@@ -1,17 +1,25 @@
 import React from "react";
 import { Form, Button } from "react-bootstrap";
 
-function FormComp() {
+function FormComp({ handleInputChange, handleFormSubmit, query }) {
   return (
     <Form>
-      <Form.Group controlId="formBook">
+      <Form.Group>
         <Form.Label>
           <strong>Book</strong>
         </Form.Label>
-        <Form.Control type="book" placeholder="Lord of the Rings" />
+        <Form.Control
+          id="Title"
+          type="text"
+          value={query}
+          placeholder="Lord of the Rings"
+          name="query"
+          onChange={handleInputChange}
+          required
+        />
       </Form.Group>
 
-      <Button variant="primary" type="submit">
+      <Button variant="primary" type="submit" onClick={handleFormSubmit}>
         Submit
       </Button>
     </Form>

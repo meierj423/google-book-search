@@ -5,6 +5,18 @@ import CardComp from "../componenets/Card";
 import FormComp from "../componenets/Form";
 
 class Home extends Component {
+  state = { query: "" };
+
+  handleInputChange = (event) => {
+    const { value } = event.target;
+    this.setState({ query: value });
+  };
+
+  handleFormSubmit = (event) => {
+    event.preventDefault();
+    alert(`The book you are searching for is: ${this.state.query}`);
+  };
+
   render() {
     return (
       <Container>
@@ -16,7 +28,11 @@ class Home extends Component {
         <Row>
           <Col>
             <CardComp title="Book Search">
-              <FormComp />
+              <FormComp
+                handleInputChange={this.handleInputChange}
+                handleFormSubmit={this.handleFormSubmit}
+                query={this.state.query}
+              />
             </CardComp>
           </Col>
         </Row>
