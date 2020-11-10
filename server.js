@@ -1,33 +1,23 @@
 const express = require("express");
-const path = require("path");
-const morgan = require("morgan");
-const initDB = require("./config/initDB")
-
-const PORT = process.env.PORT || 3001;
+const routes = require("./routes");
+const initDB = require("./config/initDB");
 const app = express();
+const PORT = process.env.PORT || 3001;
 
-// log all requests to the console in development
-if (process.env.NODE_ENV !== "production") {
-  app.use(morgan("dev"));
-}
-
-// Setting up express to use json and set it to req.body
-app.use(express.json());
+// Configure body parsing for AJAX requests
 app.use(express.urlencoded({ extended: true }));
-
-initDB();
-
-// Serve up static assets (usually on heroku)
+app.use(express.json());
+// Serve up static assets
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-// Send every request to the React app
-// Define any API routes before this runs
-app.get("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
+// Add routes, both API and view
+app.use(routes);
 
-app.listen(PORT, function () {
-  console.log(`🌎 ==> API server now on port ${PORT}!`);
-});
+initDB();
+
+// Start the API server
+app.listen(PORT, () =>
+  console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`)
+);
