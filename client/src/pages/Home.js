@@ -4,6 +4,8 @@ import { Container, Row, Col } from "react-bootstrap/";
 import JumbotronComp from "../componenets/Jumbotron";
 import CardComp from "../componenets/Card";
 import FormComp from "../componenets/Form";
+import { List } from "../componenets/List";
+import Book from "../componenets/Book";
 
 class Home extends Component {
   state = { query: "", books: [], message: "Search for a book to begin" };
@@ -30,6 +32,7 @@ class Home extends Component {
   };
 
   render() {
+    console.log(this.state.books);
     return (
       <Container>
         <Row>
@@ -45,6 +48,37 @@ class Home extends Component {
                 handleFormSubmit={this.handleFormSubmit}
                 query={this.state.query}
               />
+            </CardComp>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <CardComp title="Results">
+              {this.state.books.length ? (
+                <List>
+                  {this.state.books.map((book) => (
+                    <Book
+                      key={book.id}
+                      title={book.volumeInfo.title}
+                      subtitle={book.volumeInfo.subtitle}
+                      link={book.volumeInfo.infoLink}
+                      authors={book.volumeInfo.authors.join(", ")}
+                      description={book.volumeInfo.description}
+                      image={book.volumeInfo.imageLinks.thumbnail}
+                      Button={() => (
+                        <button
+                          onClick={() => this.handleBookSave(book.id)}
+                          className="btn btn-primary ml-2"
+                        >
+                          Save
+                        </button>
+                      )}
+                    />
+                  ))}
+                </List>
+              ) : (
+                <h2 className="text-center">{this.state.message}</h2>
+              )}
             </CardComp>
           </Col>
         </Row>
