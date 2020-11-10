@@ -12,7 +12,7 @@ function FormComp({ handleInputChange, handleFormSubmit, query }) {
           id="Title"
           type="text"
           value={query}
-          placeholder="Lord of the Rings"
+          placeholder="Enter a book here"
           name="query"
           onChange={handleInputChange}
           required
