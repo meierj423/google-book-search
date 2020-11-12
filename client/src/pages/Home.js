@@ -46,7 +46,6 @@ class Home extends Component {
   };
 
   render() {
-    console.log(this.state.books);
     return (
       <Container>
         <Row>
